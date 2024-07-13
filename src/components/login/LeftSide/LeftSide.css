@@ -1,0 +1,36 @@
+/* 左半部分 */
+.leftSide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  gap: 80px;
+  align-items: center;
+  background: linear-gradient(rgba(255, 255, 255, 0.88),
+      rgba(255, 255, 255, 0.88)) center center/cover no-repeat,
+    url(../../../assets/backImage.jpg);
+  justify-content: center;
+}
+
+.leftSide h2 {
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 0.5em;
+  margin-top: 1.2em;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+.leftSide img {
+  max-width: 560px;
+  height: auto;
+  width: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+}
