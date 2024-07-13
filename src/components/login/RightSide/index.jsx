@@ -86,9 +86,7 @@ function RightSide() {
                 </span>
               </div>
               <div className="fr">
-                <button type="button" onClick={() => alert("忘记密码")}>
-                  忘记密码?
-                </button>
+                <button type="button">忘记密码?</button>
               </div>
             </div>
           </div>

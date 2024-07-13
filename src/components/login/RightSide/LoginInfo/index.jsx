@@ -1,22 +1,24 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { changeLoginStatus } from "../../../../stores/modules/loginStore";
 function LoginInfo() {
-  const [sign, setSign] = useState(true);
-
-  const handleChangeSign = () => {
-    setSign(!sign);
-  };
+  //得到登录状态
+  const { loginStatus } = useSelector((state) => state.loginStatus);
+  //得到dispatch函数
+  const dispatch = useDispatch();
   return (
     <div className="login_info">
       <h3 className="title">
-        {sign ? "登录 Adam System" : "注册 Adam System"}
+        {loginStatus ? "登录 Adam System" : "注册 Adam System"}
       </h3>
       <span className="typography-secondary">
-        <p id="userState">{sign ? "新用户?" : "老用户?"}</p>
-        <button className="registerbtn">
-          <span id="secondarySpan" onClick={handleChangeSign}>
-            {sign ? "立即注册" : "立即登录"}
+        <p id="userState">{loginStatus ? "新用户?" : "老用户?"}</p>
+        <button
+          className="registerbtn"
+          onClick={() => dispatch(changeLoginStatus())}
+        >
+          <span id="secondarySpan">
+            {loginStatus ? "立即注册" : "立即登录"}
           </span>
         </button>
       </span>
