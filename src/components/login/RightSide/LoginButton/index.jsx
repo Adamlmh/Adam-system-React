@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-function LoginButton() {
+function LoginButton({ isSubmitting }) {
   //用useState來控制按鈕的hover效果
   const [isHovered, setIsHovered] = useState(false);
 
@@ -24,9 +24,10 @@ function LoginButton() {
             id="submitBtn"
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave}
+            disabled={isSubmitting}
           >
             <span style={{ color: "white" }} id="submitSpan">
-              {loginStatus ? "登 录" : "注 册"}
+              {isSubmitting ? "提交中..." : loginStatus ? "登 录" : "注 册"}
             </span>
           </button>
         </div>
