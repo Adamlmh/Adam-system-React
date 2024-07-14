@@ -2,16 +2,24 @@ import { UserOutlined, UnlockOutlined } from "@ant-design/icons";
 import LoginButton from "../LoginButton/index";
 import { useState } from "react";
 import axios from "axios";
+import Alert from "../../../alert";
 
 function LoginForm({ loginStatus }) {
-  //判断是登录还是注册
-
   //定义状态变量
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usertype, setUsertype] = useState("1");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  //弹框出现函数
+  const hanleShowAlert = () => {
+    setShowAlert(true);
+  };
+  //关闭弹框函数
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
   //处理表单提交
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +38,8 @@ function LoginForm({ loginStatus }) {
       if (response.data.success) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("id", response.data.id);
+        //在这里改变 弹窗颜色 把  --alert-color: #fadad8;变成#CFE5DD
+        document.documentElement.style.setProperty("--alert-color", "#CFE5DD");
         setTimeout(() => {
           if (usertype === "1") {
             alert("用户登录成功");
@@ -44,8 +54,9 @@ function LoginForm({ loginStatus }) {
     } catch (error) {
       console.log(error.request.response);
       const errorResponse = JSON.parse(error.request.response);
-      alert(errorResponse.message);
+      setAlertMessage(errorResponse.message);
     } finally {
+      hanleShowAlert();
       setIsSubmitting(false);
     }
   };
@@ -146,6 +157,7 @@ function LoginForm({ loginStatus }) {
         </div>
       </div>
       <LoginButton isSubmitting={isSubmitting} />
+      {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert} />}
     </form>
   );
 }
