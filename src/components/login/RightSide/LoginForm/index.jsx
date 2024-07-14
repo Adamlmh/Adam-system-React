@@ -1,9 +1,9 @@
 import { UserOutlined, UnlockOutlined } from "@ant-design/icons";
 import LoginButton from "../LoginButton/index";
-import { useState } from "react";
-import axios from "axios";
 import Alert from "../../../alert";
-
+// import { handleLoginForm } from "../../../utils/handleLoginForm.js";
+import { loginApi, registerApi } from "../../../../api";
+import { useState } from "react";
 function LoginForm({ loginStatus }) {
   //定义状态变量
   const [username, setUsername] = useState("");
@@ -25,34 +25,27 @@ function LoginForm({ loginStatus }) {
     e.preventDefault();
     setIsSubmitting(true);
     localStorage.setItem("usertype", usertype);
-    const fetchUrl = loginStatus
-      ? "http://localhost:8080/api/login"
-      : "http://localhost:8080/api/register";
-
+    const data = {
+      username,
+      password,
+      usertype,
+    };
     try {
-      const response = await axios.post(fetchUrl, {
-        username,
-        password,
-        usertype,
+      const response = await (loginStatus ? loginApi(data) : registerApi(data));
+      console.log(response);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("id", response.id);
+      setTimeout(() => {
+        if (usertype === "1") {
+          setAlertMessage("用户登录成功");
+          //用路由更改
+          // window.location.href = "/";
+        } else {
+          setAlertMessage("管理员登录成功");
+          // window.location.href = "/admin";
+        }
       });
-      if (response.data.success) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("id", response.data.id);
-        //在这里改变 弹窗颜色 把  --alert-color: #fadad8;变成#CFE5DD
-        document.documentElement.style.setProperty("--alert-color", "#CFE5DD");
-        setTimeout(() => {
-          if (usertype === "1") {
-            alert("用户登录成功");
-            //用路由更改
-            // window.location.href = "/";
-          } else {
-            alert("管理员登录成功");
-            // window.location.href = "/admin";
-          }
-        });
-      }
     } catch (error) {
-      console.log(error.request.response);
       const errorResponse = JSON.parse(error.request.response);
       setAlertMessage(errorResponse.message);
     } finally {
