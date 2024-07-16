@@ -1,4 +1,11 @@
+import Navigate from "../../components/navigate/index";
+import { Outlet } from "react-router-dom";
 function AdminPage() {
-  return <h1>Admin Page</h1>;
+  return (
+    <div>
+      <Navigate />
+      <Outlet />
+    </div>
+  );
 }
 export default AdminPage;

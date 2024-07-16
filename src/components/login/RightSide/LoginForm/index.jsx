@@ -8,6 +8,7 @@ import {
 } from "../../../utils/handleSubmit";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 function LoginForm({ loginStatus }) {
   //定义状态变量
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ function LoginForm({ loginStatus }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [timerUser, setTimerUser] = useState(null);
 
   const data = {
     username,
@@ -23,6 +25,15 @@ function LoginForm({ loginStatus }) {
     usertype,
   };
   const navigate = useNavigate();
+  // 清理定时器
+  useEffect(() => {
+    return () => {
+      if (timerUser) {
+        clearTimeout(timerUser);
+      }
+    };
+  }, [timerUser]);
+
   return (
     <form
       className="loginform"
@@ -36,7 +47,8 @@ function LoginForm({ loginStatus }) {
           () => handleShowAlert(setShowAlert),
           setIsSubmitting,
           usertype,
-          navigate
+          navigate,
+          setTimerUser
         )
       }
     >

@@ -1,10 +1,11 @@
+import Navigate from "../../components/navigate/index";
+import { Outlet } from "react-router-dom";
 function UserPage() {
   return (
     <div>
-      <h1>User Page</h1>
-      {/* Add user-specific content here */}
+      <Navigate />
+      <Outlet />
     </div>
   );
 }
-
 export default UserPage;
