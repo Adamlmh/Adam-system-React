@@ -1,10 +1,10 @@
 import React from 'react';
-import Login from './components/login/index'
+import {Router} from './router/index';
 import './App.css';
 const App = () => {
   return (
     <div className='App'>
-      <Login/>
+      <Router/>
     </div>
   );
 };

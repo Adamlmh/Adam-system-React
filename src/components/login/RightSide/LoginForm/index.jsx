@@ -1,9 +1,13 @@
 import { UserOutlined, UnlockOutlined } from "@ant-design/icons";
 import LoginButton from "../LoginButton/index";
 import Alert from "../../../alert";
-// import { handleLoginForm } from "../../../utils/handleLoginForm.js";
-import { loginApi, registerApi } from "../../../../api";
+import {
+  handleSubmit,
+  handleShowAlert,
+  handleCloseAlert,
+} from "../../../utils/handleSubmit";
 import { useState } from "react";
+
 function LoginForm({ loginStatus }) {
   //定义状态变量
   const [username, setUsername] = useState("");
@@ -12,49 +16,29 @@ function LoginForm({ loginStatus }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  //弹框出现函数
-  const hanleShowAlert = () => {
-    setShowAlert(true);
+
+  const data = {
+    username,
+    password,
+    usertype,
   };
-  //关闭弹框函数
-  const handleCloseAlert = () => {
-    setShowAlert(false);
-  };
-  //处理表单提交
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    localStorage.setItem("usertype", usertype);
-    const data = {
-      username,
-      password,
-      usertype,
-    };
-    try {
-      const response = await (loginStatus ? loginApi(data) : registerApi(data));
-      console.log(response);
-      localStorage.setItem("token", response.token);
-      localStorage.setItem("id", response.id);
-      setTimeout(() => {
-        if (usertype === "1") {
-          setAlertMessage("用户登录成功");
-          //用路由更改
-          // window.location.href = "/";
-        } else {
-          setAlertMessage("管理员登录成功");
-          // window.location.href = "/admin";
-        }
-      });
-    } catch (error) {
-      const errorResponse = JSON.parse(error.request.response);
-      setAlertMessage(errorResponse.message);
-    } finally {
-      hanleShowAlert();
-      setIsSubmitting(false);
-    }
-  };
+
   return (
-    <form className="loginform" id="loginform" onSubmit={handleSubmit}>
+    <form
+      className="loginform"
+      id="loginform"
+      onSubmit={(e) =>
+        handleSubmit(
+          e,
+          data,
+          loginStatus,
+          setAlertMessage,
+          () => handleShowAlert(setShowAlert),
+          setIsSubmitting,
+          usertype
+        )
+      }
+    >
       <div className="item">
         <div className="item_input">
           <div className="item_input_content">
@@ -150,7 +134,12 @@ function LoginForm({ loginStatus }) {
         </div>
       </div>
       <LoginButton isSubmitting={isSubmitting} />
-      {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert} />}
+      {showAlert && (
+        <Alert
+          message={alertMessage}
+          onClose={() => handleCloseAlert(setShowAlert)}
+        />
+      )}
     </form>
   );
 }

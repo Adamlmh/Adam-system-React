@@ -13,7 +13,6 @@ function LoginButton({ isSubmitting }) {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
   return (
     <div className="item">
       <div className="item_input">
