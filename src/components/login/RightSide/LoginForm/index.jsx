@@ -7,7 +7,7 @@ import {
   handleCloseAlert,
 } from "../../../utils/handleSubmit";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function LoginForm({ loginStatus }) {
   //定义状态变量
   const [username, setUsername] = useState("");
@@ -22,7 +22,7 @@ function LoginForm({ loginStatus }) {
     password,
     usertype,
   };
-
+  const navigate = useNavigate();
   return (
     <form
       className="loginform"
@@ -35,7 +35,8 @@ function LoginForm({ loginStatus }) {
           setAlertMessage,
           () => handleShowAlert(setShowAlert),
           setIsSubmitting,
-          usertype
+          usertype,
+          navigate
         )
       }
     >

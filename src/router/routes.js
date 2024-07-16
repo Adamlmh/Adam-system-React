@@ -1,5 +1,6 @@
 import LoginPage from '../pages/LoginPage/index'
 import  UserPage  from '../pages/UserPage/index';
+import AdminPage from '../pages/AdminPage/index';
 const routes = [
     {
       path:'/',
@@ -8,6 +9,10 @@ const routes = [
     {
       path:'/user',
       element:<UserPage/>
+    },
+    {
+      path:'/admin',
+      element:<AdminPage/>
     }
 ]
 

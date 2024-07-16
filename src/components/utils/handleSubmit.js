@@ -1,7 +1,7 @@
 import { loginApi, registerApi } from "../../api";
 
   //处理表单提交
-  export const handleSubmit = async (e, data, loginStatus, setAlertMessage, handleShowAlert, setIsSubmitting,usertype) => {
+  export const handleSubmit = async (e, data, loginStatus, setAlertMessage, handleShowAlert, setIsSubmitting,usertype,navigate) => {
     e.preventDefault();
     setIsSubmitting(true);
     localStorage.setItem("usertype", usertype);
@@ -14,10 +14,12 @@ import { loginApi, registerApi } from "../../api";
       setTimeout(() => {
         if (usertype === "1") {
           setAlertMessage("用户登录成功");
-          //用路由更改
+          //用路由更改   我想在这里增加一个路由跳转到user路由下
+          navigate("/user");
           // window.location.href = "/";
         } else {
           setAlertMessage("管理员登录成功");
+          navigate("/admin");
           // window.location.href = "/admin";
         }
       });
