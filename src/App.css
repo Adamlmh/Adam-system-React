@@ -206,7 +206,7 @@ h5 {
 .logoIcon {
   width: 30px;
   height: 30px;
-  /* background-image: url(); */
+  background-image: url(./assets/favicon.ico);
   background-size: contain;
 }
 
@@ -355,7 +355,9 @@ h5 {
   overflow-x: hidden;
 }
 
-
+.iconfont{
+  margin-right: 10px;
+}
 
 /* next */
 
