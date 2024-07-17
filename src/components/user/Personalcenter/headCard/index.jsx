@@ -1,5 +1,4 @@
 function HeadCard({ Userdata }) {
-  console.log(Userdata);
   return (
     <div className="card boxShadow">
       <div className="card_cover">

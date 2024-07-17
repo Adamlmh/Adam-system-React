@@ -26,3 +26,12 @@ export function getUserInfoApi() {
     method: "get",
   });
 }
+
+//获取会议纪要信息API
+export function getMeetingSummaryApi() {
+    const id = localStorage.getItem("id");
+  return service({
+    url: `/private/MeetingMinutes/${id}`,
+    method: "get",
+  });
+}

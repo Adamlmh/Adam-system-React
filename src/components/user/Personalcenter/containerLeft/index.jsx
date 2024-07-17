@@ -22,9 +22,7 @@ export default function ContainerLeft({ Userdata }) {
         </div>
         <div className="container_left_item_body" style={{ padding: "20px" }}>
           <span className="typography_secondary" id="introduction">
-            如果给你寄一本书， 我不会寄给你诗歌，
-            我要给你一本关于植物，关于庄稼的， 告诉你稻子和稗子的区别，
-            告诉你一棵稗子提心吊胆的春天。
+            {Userdata.introduction}
           </span>
           <div className="spin_container">
             <ul className="list_items">

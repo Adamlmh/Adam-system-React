@@ -4,11 +4,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginStatusReducer from "./modules/loginStore"
 import navigateNameReducer from "./modules/navigateNameStore";
 import basicInformationReducer from "./modules/basicInformation";
+import meetingReducer from "./modules/meetingStore";
 const store = configureStore({
   reducer:{
     loginStatus: loginStatusReducer,
     navigateName: navigateNameReducer,
     basicInformation: basicInformationReducer,
+    MeetingSummary: meetingReducer,
   }
 })
 

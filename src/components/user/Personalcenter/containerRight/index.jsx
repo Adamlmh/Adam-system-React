@@ -1,4 +1,4 @@
-export default function ContainerRight() {
+export default function ContainerRight({ Meetingdata }) {
   return (
     <div className="container_right">
       <div className="container_right_item boxShadow">
@@ -21,21 +21,17 @@ export default function ContainerRight() {
                   <th className="table_cell">审核意见</th>
                 </tr>
               </thead>
+
               <tbody className="table_tbody">
-                <tr>
-                  <th className="table_cell">1</th>
-                  <th className="table_cell">开心每一天</th>
-                  <th className="table_cell">2024/01/02</th>
-                  <th className="table_cell">待审核</th>
-                  <th className="table_cell">描述需要详细些</th>
-                </tr>
-                <tr>
-                  <th className="table_cell">1</th>
-                  <th className="table_cell">开心每一天</th>
-                  <th className="table_cell">2024/01/02</th>
-                  <th className="table_cell">待审核</th>
-                  <th className="table_cell">描述需要详细些</th>
-                </tr>
+                {Meetingdata.map((item) => (
+                  <tr key={item.minutesId}>
+                    <th className="table_cell">{item.minutesId}</th>
+                    <th className="table_cell">{item.meetingTopic}</th>
+                    <th className="table_cell">{item.meetingTime}</th>
+                    <th className="table_cell">{item.status}</th>
+                    <th className="table_cell">{item.reviewComments}</th>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
