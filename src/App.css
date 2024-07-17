@@ -150,8 +150,6 @@ h5 {
   border-inline-start: 1px solid rgba(5, 5, 5, 0.06);
 }
 
-
-
 /* 共同样式 */
 .layout {
   color: rgba(0, 0, 0, 0.88);
@@ -355,12 +353,11 @@ h5 {
   overflow-x: hidden;
 }
 
-.iconfont{
+.iconfont {
   margin-right: 10px;
 }
 
 /* next */
-
 
 * {
   margin: 0;
@@ -371,4 +368,3 @@ a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.88);
 }
-

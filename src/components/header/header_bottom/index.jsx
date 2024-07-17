@@ -28,6 +28,7 @@ function HeaderBottom() {
             isActive ? "top_route_item top_route_item_active" : ""
           }
           to={`${item.path}`}
+          key={item.path}
         >
           {({ isActive }) => (
             <span

@@ -26,7 +26,6 @@ service.interceptors.request.use(config => {
 
 //响应拦截器
 service.interceptors.response.use(response => {
-  console.log(response);
   // 对响应数据做点什么
   if( response.status < 300){
   //在这里改变 弹窗颜色 把  --alert-color: #fadad8;变成#CFE5DD

@@ -17,3 +17,12 @@ export function registerApi(data) {
     data,
   });
 }
+
+//获取用户信息API
+export function getUserInfoApi() {
+  const id = localStorage.getItem("id");
+  return service({
+    url: `/private/Personalcenter/${id}`,
+    method: "get",
+  });
+}
