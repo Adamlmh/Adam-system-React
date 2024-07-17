@@ -1,4 +1,5 @@
-function HeadCard() {
+function HeadCard({ Userdata }) {
+  console.log(Userdata);
   return (
     <div className="card boxShadow">
       <div className="card_cover">
@@ -12,9 +13,9 @@ function HeadCard() {
             }}
           ></div>
           <div className="info">
-            <h3 id="name">Adam</h3>
+            <h3 id="name">{Userdata.name}</h3>
             <span style={{ opacity: 0.7 }} id="group">
-              前端组
+              {Userdata.group}
             </span>
           </div>
         </div>

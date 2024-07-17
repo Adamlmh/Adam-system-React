@@ -1,4 +1,4 @@
-export default function ContainerLeft() {
+export default function ContainerLeft({ Userdata }) {
   return (
     <div className="container_left">
       <div className="container_left_item boxShadow">
@@ -32,7 +32,7 @@ export default function ContainerLeft() {
                 <div className="list_item_meta">
                   <span className="list_item_meta_icon iconfont icon-nianji"></span>
                   <span className="list_item_meta_content" id="grade">
-                    大一
+                    {Userdata.grade}
                   </span>
                 </div>
               </li>
@@ -40,7 +40,7 @@ export default function ContainerLeft() {
                 <div className="list_item_meta">
                   <span className="list_item_meta_icon iconfont icon-zhuanyezhishijineng"></span>
                   <span className="list_item_meta_content" id="major">
-                    计算机专业
+                    {Userdata.major}
                   </span>
                 </div>
               </li>
@@ -48,7 +48,7 @@ export default function ContainerLeft() {
                 <div className="list_item_meta">
                   <span className="list_item_meta_icon iconfont icon-youxiang"></span>
                   <span className="list_item_meta_content" id="email">
-                    adamlmh@gmail.com
+                    {Userdata.email}
                   </span>
                 </div>
               </li>
