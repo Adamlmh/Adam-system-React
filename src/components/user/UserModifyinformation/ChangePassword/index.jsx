@@ -1,4 +1,13 @@
-function ChangePassword() {
+import { useState } from "react";
+function ChangePassword({ formData, handleChange, handleIntroductionSubmit }) {
+  const [isCorrect, setIsCorrect] = useState(true);
+  const handleBlur = (e) => {
+    if (e.target.value === formData.password) {
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
+  };
   return (
     <div className="container_left_item boxShadow">
       <div className="container_left_item_head">
@@ -24,12 +33,17 @@ function ChangePassword() {
                       placeholder="请输入你的原密码"
                       maxLength="30"
                       id="oldPassword"
-                      // value={formData.oldPassword}
                       className="form_input"
                       required
-                      // onChange={handleChange}
+                      onBlur={handleBlur}
                     />
-                    <span className="alertSpan" id="passwordIncorrect">
+                    <span
+                      className="alertSpan"
+                      id="passwordIncorrect"
+                      style={{
+                        display: isCorrect ? "none" : "block",
+                      }}
+                    >
                       原密码不正确噢
                     </span>
                   </span>

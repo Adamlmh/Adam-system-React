@@ -17,31 +17,18 @@ const UserModifyinformation = () => {
     dispatch(changeBasicInformation(newFormData));
   }, [newFormData, dispatch]);
   const handleChange = (e) => {
+    const { id, value } = e.target; // 获取表单元素的 id 和 value
     setFormData((prevData) => ({
       ...prevData,
-      introduction: e.target.value,
+      [id]: value, // 根据 id 更新 formData 中对应的字段
     }));
   };
+
   const handleIntroductionSubmit = () => {
     updateUserInfoApi(formData);
     alert("修改成功");
     setNewFormData(formData);
   };
-  // const handleFileChange = (e) => {
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     file: e.target.files[0],
-  //   }));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const form = new FormData();
-  //   form.append("file", formData.file);
-
-  // const handleBasicDataSubmit = () => {
-  //   console.log("Basic Data:", formData);
-  // };
 
   // const handlePasswordSubmit = () => {
   //   if (formData.newPassword !== formData.reNewPassword) {
@@ -69,7 +56,11 @@ const UserModifyinformation = () => {
               handleChange={handleChange}
               handleIntroductionSubmit={handleIntroductionSubmit}
             />
-            <ChangePassword />
+            <ChangePassword
+              formData={formData}
+              handleChange={handleChange}
+              handleIntroductionSubmit={handleIntroductionSubmit}
+            />
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@ function BasicInformation({
                         aria-required="true"
                         placeholder="这是你的ID"
                         maxLength="30"
-                        value="1"
+                        value={formData.userId}
                         className="form_input"
                         readOnly
                         disabled
@@ -50,10 +50,10 @@ function BasicInformation({
                         placeholder="请输入昵称"
                         maxLength="30"
                         id="name"
-                        // value={data.introduction}
+                        value={formData.name}
                         className="form_input"
                         required
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </span>
                   </div>
@@ -77,7 +77,7 @@ function BasicInformation({
                         aria-required="true"
                         placeholder="这是你的账号"
                         maxLength="30"
-                        value="Adam"
+                        value={formData.username}
                         className="form_input"
                         readOnly
                         disabled
@@ -106,10 +106,10 @@ function BasicInformation({
                         placeholder="请输入组别"
                         maxLength="30"
                         id="group"
-                        // value={formData.group}
+                        value={formData.group}
                         className="form_input"
                         required
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </span>
                   </div>
@@ -134,10 +134,10 @@ function BasicInformation({
                         placeholder="请输入你的年级"
                         maxLength="30"
                         id="grade"
-                        // value={formData.grade}
+                        value={formData.grade}
                         className="form_input"
                         required
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </span>
                   </div>
@@ -162,10 +162,10 @@ function BasicInformation({
                         placeholder="请输入专业"
                         maxLength="30"
                         id="major"
-                        // value={formData.major}
+                        value={formData.major}
                         className="form_input"
                         required
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </span>
                   </div>
@@ -190,10 +190,10 @@ function BasicInformation({
                         placeholder="请输入邮箱"
                         maxLength="30"
                         id="email"
-                        // value={formData.email}
+                        value={formData.email}
                         className="form_input"
                         required
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </span>
                   </div>
@@ -232,7 +232,7 @@ function BasicInformation({
                 type="button"
                 className="right_form_submit_btn"
                 id="basicDataBtn"
-                // onClick={handleBasicDataSubmit}
+                onClick={handleIntroductionSubmit}
               >
                 <span>提交</span>
               </button>
