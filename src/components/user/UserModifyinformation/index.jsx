@@ -1,34 +1,32 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-import "./style.module.css";
-import { useSelector } from "react-redux";
+import "./style.css";
+import { useSelector, useDispatch } from "react-redux";
+import { changeBasicInformation } from "../../../stores/modules/basicInformation";
+import { useState, useEffect } from "react";
+import { updateUserInfoApi } from "../../../api";
 import UploadAvatar from "./UploadAvatar";
 import PersonalIntroduction from "./PersonalIntroduction";
 import BasicInformation from "./BasicInformation";
 import ChangePassword from "./ChangePassword";
 const UserModifyinformation = () => {
   const data = useSelector((state) => state.basicInformation.data);
-  console.log(data);
-  // const [formData, setFormData] = useState({
-  //   name: "",
-  //   group: "",
-  //   grade: "",
-  //   major: "",
-  //   email: "",
-  //   oldPassword: "",
-  //   newPassword: "",
-  //   reNewPassword: "",
-  //   introduction: "",
-  // });
-
-  // const handleChange = (e) => {
-  //   const { id, value } = e.target;
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [id]: value,
-  //   }));
-  // };
-
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState(data);
+  const [newFormData, setNewFormData] = useState(data);
+  useEffect(() => {
+    console.log(newFormData);
+    dispatch(changeBasicInformation(newFormData));
+  }, [newFormData, dispatch]);
+  const handleChange = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      introduction: e.target.value,
+    }));
+  };
+  const handleIntroductionSubmit = () => {
+    updateUserInfoApi(formData);
+    alert("修改成功");
+    setNewFormData(formData);
+  };
   // const handleFileChange = (e) => {
   //   setFormData((prevData) => ({
   //     ...prevData,
@@ -41,20 +39,6 @@ const UserModifyinformation = () => {
   //   const form = new FormData();
   //   form.append("file", formData.file);
 
-  //   axios
-  //     .post("http://localhost:8080/upload", form)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
-  // const handleIntroductionSubmit = () => {
-  //   console.log("Introduction:", formData.introduction);
-  // };
-
   // const handleBasicDataSubmit = () => {
   //   console.log("Basic Data:", formData);
   // };
@@ -65,19 +49,6 @@ const UserModifyinformation = () => {
   //     return;
   // //   }
 
-  //   axios
-  //     .post("http://localhost:8080/change-password", {
-  //       oldPassword: formData.oldPassword,
-  //       newPassword: formData.newPassword,
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
   return (
     <main className="layout_content" id="mainContent">
       <div className="content_detail">
@@ -86,10 +57,18 @@ const UserModifyinformation = () => {
             <div className="container_left_item boxShadow">
               <UploadAvatar />
             </div>
-            <PersonalIntroduction />
+            <PersonalIntroduction
+              introduction={formData.introduction}
+              handleChange={handleChange}
+              handleIntroductionSubmit={handleIntroductionSubmit}
+            />
           </div>
           <div className="container_right ">
-            <BasicInformation />
+            <BasicInformation
+              formData={formData}
+              handleChange={handleChange}
+              handleIntroductionSubmit={handleIntroductionSubmit}
+            />
             <ChangePassword />
           </div>
         </div>

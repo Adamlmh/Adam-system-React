@@ -35,3 +35,14 @@ export function getMeetingSummaryApi() {
     method: "get",
   });
 }
+
+//更新个人信息API
+export function updateUserInfoApi(data) {
+  return service({
+    url: `/private/Modifyinformation/${localStorage.getItem(
+          "id"
+        )}`,
+    method: "post",
+    data,
+  })
+}

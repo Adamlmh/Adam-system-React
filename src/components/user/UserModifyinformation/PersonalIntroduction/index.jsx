@@ -1,4 +1,8 @@
-function PersonalIntroduction() {
+function PersonalIntroduction({
+  introduction,
+  handleChange,
+  handleIntroductionSubmit,
+}) {
   return (
     <div className="container_left_item boxShadow">
       <div className="container_left_item_head">
@@ -13,8 +17,8 @@ function PersonalIntroduction() {
               placeholder="请输入内容"
               maxLength="200"
               className="container_left_item_body_input_content"
-              // value={formData.introduction}
-              // onChange={handleChange}
+              value={introduction}
+              onChange={handleChange}
             ></textarea>
           </div>
           <div className="right_form_submit">
@@ -23,7 +27,7 @@ function PersonalIntroduction() {
               className="right_form_submit_btn"
               style={{ marginTop: "20px" }}
               id="introductionBtn"
-              // onClick={handleIntroductionSubmit}
+              onClick={handleIntroductionSubmit}
             >
               <span>提交</span>
             </button>

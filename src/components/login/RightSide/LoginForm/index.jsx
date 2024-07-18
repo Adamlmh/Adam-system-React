@@ -38,6 +38,7 @@ function LoginForm({ loginStatus }) {
     <form
       className="loginform"
       id="loginform"
+      style={{ display: "block" }}
       onSubmit={(e) =>
         handleSubmit(
           e,

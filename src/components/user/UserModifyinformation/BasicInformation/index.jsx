@@ -1,4 +1,8 @@
-function BasicInformation() {
+function BasicInformation({
+  formData,
+  handleChange,
+  handleIntroductionSubmit,
+}) {
   return (
     <div className="container_right_item boxShadow">
       <div className="container_right_item_body" style={{ padding: "20px" }}>
@@ -46,7 +50,7 @@ function BasicInformation() {
                         placeholder="请输入昵称"
                         maxLength="30"
                         id="name"
-                        // value={formData.name}
+                        // value={data.introduction}
                         className="form_input"
                         required
                         // onChange={handleChange}
